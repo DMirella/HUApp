@@ -25,11 +25,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    hmi/main.cc \
-    hmi/main_window.cc
+    hmi/main_window.cc \
+    hmi/hmi_service.cc \
+    main/main.cc \
+    main/service_accessor.cc
 
 HEADERS += \
-    hmi/main_window.h
+    hmi/main_window.h \
+    hmi/hmi_service.h \
+    main/service_accessor.h
 
 FORMS += \
     hmi/main_window.ui

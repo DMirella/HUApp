@@ -3,9 +3,12 @@
 
 #include <QMainWindow>
 
+
 namespace Ui {
 class MainWindow;
 }
+
+namespace hmi {
 
 class MainWindow : public QMainWindow
 {
@@ -18,5 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
 };
+
+}  // hmi
 
 #endif // MAIN_WINDOW_H
