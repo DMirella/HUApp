@@ -32,7 +32,7 @@ HEADERS += \
     hmi/main_window.h
 
 FORMS += \
-    hmi/mainwindow.ui
+    hmi/main_window.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
