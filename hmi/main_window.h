@@ -3,6 +3,10 @@
 
 #include <QMainWindow>
 
+#include "hmi/media/media_screen.h"
+#include "hmi/phone/phone_screen.h"
+#include "hmi/radio/radio_screen.h"
+#include "hmi/settings/settings_screen.h"
 
 namespace Ui {
 class MainWindow;
@@ -10,16 +14,27 @@ class MainWindow;
 
 namespace hmi {
 
-class MainWindow : public QMainWindow
-{
-    Q_OBJECT
+class MainWindow : public QMainWindow {
+  Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+ public:
+  explicit MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
+
+ private slots:
+  void on_bRadio_clicked();
+  void on_bMedia_clicked();
+  void on_bPhone_clicked();
+
+  void on_bSettings_clicked();
 
 private:
-    Ui::MainWindow *ui;
+  Ui::MainWindow *ui;
+
+  RadioScreen radio_screen_;
+  MediaScreen media_screen_;
+  PhoneScreen phone_screen_;
+  SettingsScreen settings_screen_;
 };
 
 }  // hmi

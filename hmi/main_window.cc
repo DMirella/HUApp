@@ -13,4 +13,20 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 
+void MainWindow::on_bRadio_clicked() {
+  radio_screen_.show();
+}
+
+void hmi::MainWindow::on_bMedia_clicked() {
+  media_screen_.show();
+}
+
+void hmi::MainWindow::on_bPhone_clicked() {
+  phone_screen_.show();
+}
+
+void hmi::MainWindow::on_bSettings_clicked() {
+  settings_screen_.show();
+}
+
 }  // hmi

@@ -30,17 +30,29 @@ SOURCES += \
     main/main.cc \
     main/service_accessor.cc \
     radio/radio_service.cc \
-    media/media_service.cc
+    media/media_service.cc \
+    hmi/radio/radio_screen.cc \
+    hmi/media/media_screen.cc \
+    hmi/phone/phone_screen.cc \
+    hmi/settings/settings_screen.cc
 
 HEADERS += \
     hmi/main_window.h \
     hmi/hmi_service.h \
     main/service_accessor.h \
     radio/radio_service.h \
-    media/media_service.h
+    media/media_service.h \
+    hmi/radio/radio_screen.h \
+    hmi/media/media_screen.h \
+    hmi/phone/phone_screen.h \
+    hmi/settings/settings_screen.h
 
 FORMS += \
-    hmi/main_window.ui
+    hmi/main_window.ui \
+    hmi/radio/radio_screen.ui \
+    hmi/media/media_screen.ui \
+    hmi/phone/phone_screen.ui \
+    hmi/settings/settings_screen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
