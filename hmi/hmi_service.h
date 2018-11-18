@@ -9,8 +9,8 @@ class HMIService {
  public:
   HMIService(const HMIService& service) = delete;
   HMIService(HMIService&& service) = delete;
-  HMIService operator=(const HMIService& service) = delete;
-  HMIService operator=(HMIService&& service) = delete;
+  HMIService& operator=(const HMIService& service) = delete;
+  HMIService& operator=(HMIService&& service) = delete;
 
   HMIService();
   ~HMIService() {}

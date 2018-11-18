@@ -9,8 +9,8 @@ class ServiceAccessor {
  public:
   ServiceAccessor(const ServiceAccessor& service) = delete;
   ServiceAccessor(ServiceAccessor&& service) = delete;
-  ServiceAccessor operator=(const ServiceAccessor& service) = delete;
-  ServiceAccessor operator=(ServiceAccessor&& service) = delete;
+  ServiceAccessor& operator=(const ServiceAccessor& service) = delete;
+  ServiceAccessor& operator=(ServiceAccessor&& service) = delete;
 
   static ServiceAccessor& GetInstance();
   ~ServiceAccessor() {}

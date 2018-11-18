@@ -28,12 +28,16 @@ SOURCES += \
     hmi/main_window.cc \
     hmi/hmi_service.cc \
     main/main.cc \
-    main/service_accessor.cc
+    main/service_accessor.cc \
+    radio/radio_service.cc \
+    media/media_service.cc
 
 HEADERS += \
     hmi/main_window.h \
     hmi/hmi_service.h \
-    main/service_accessor.h
+    main/service_accessor.h \
+    radio/radio_service.h \
+    media/media_service.h
 
 FORMS += \
     hmi/main_window.ui
