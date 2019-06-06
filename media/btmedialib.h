@@ -17,7 +17,7 @@ class BTMediaLibReciever {
 
 class BTMediaLib {
  public:
-  BTMediaLib(BTMediaLibReciever* reciever)
+  BTMediaLib(std::shared_ptr<BTMediaLibReciever> reciever)
     : reciever_(reciever) {
   }
  private:

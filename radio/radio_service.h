@@ -1,6 +1,7 @@
 #ifndef RADIO_SERVICE_H
 #define RADIO_SERVICE_H
 
+namespace radio {
 
 class RadioService {
  public:
@@ -12,5 +13,7 @@ class RadioService {
   RadioService();
   ~RadioService() {}
 };
+
+}  // namespace radio
 
 #endif // RADIO_SERVICE_H

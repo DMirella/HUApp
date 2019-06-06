@@ -46,7 +46,10 @@ HEADERS += \
     hmi/media/media_screen.h \
     hmi/phone/phone_screen.h \
     hmi/settings/settings_screen.h \
-    media/btmedialib.h
+    media/btmedialib.h \
+    radio/radiolib.h \
+    main/lib_manager.h \
+    tools/boostc++11.h
 
 FORMS += \
     hmi/main_window.ui \
