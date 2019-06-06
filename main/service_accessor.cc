@@ -11,3 +11,8 @@ ServiceAccessor& ServiceAccessor::GetInstance() {
   static ServiceAccessor service_accessor;
   return service_accessor;
 }
+
+void ServiceAccessor::Init()
+{
+  radio_service_->Init();
+}

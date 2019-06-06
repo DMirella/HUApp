@@ -4,7 +4,6 @@
 #include "main_window.h"
 
 #include "hmi/radio/radio_screen.h"
-
 #include "radio/hmi_radio_reciever.h"
 
 namespace hmi {
@@ -22,7 +21,7 @@ class HMIService {
   void start();
 
   std::shared_ptr<RadioServiceReciever> GetRadioServiceReciever() {
-      //return main_window_.radio_screen_.GetRadioServiceRecieverDelegate();
+    return std::make_shared<RadioServiceReciever>(main_window_.radio_screen_);
   }
 
  private:

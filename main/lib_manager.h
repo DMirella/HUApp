@@ -3,10 +3,10 @@
 
 #include <memory>
 
-#include "media/btmedialib.h"
-#include "radio/radiolib.h"
-#include "main/service_accessor.h"
 #include "tools/boostc++11.h"
+
+class BTMediaLib;
+class RadioLib;
 
 class LibManager
 {
@@ -22,17 +22,16 @@ public:
   }
   ~LibManager() {}
 
-  void Init() {
-    btmedia_lib_ = boostcc11::make_unique<BTMediaLib>(
-          ServiceAccessor::GetInstance().GetMediaService());
-    radio_lib_ = boostcc11::make_unique<RadioLib>(
-          ServiceAccessor::GetInstance().GetRadioService());
+  void Init();
+
+  std::shared_ptr<RadioLib> GetRadioLib() const {
+    return radio_lib_;
   }
 private:
   LibManager() {}
 
-  std::unique_ptr<BTMediaLib> btmedia_lib_;
-  std::unique_ptr<RadioLib> radio_lib_;
+  std::shared_ptr<BTMediaLib> btmedia_lib_;
+  std::shared_ptr<RadioLib> radio_lib_;
 };
 
 #endif // LIB_MANAGER_H

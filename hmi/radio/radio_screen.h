@@ -13,35 +13,31 @@ class RadioScreen;
 
 namespace hmi {
 
-class RadioScreen : public QMainWindow {
+class RadioScreen : public QMainWindow
+                  , public RadioServiceReciever {
   Q_OBJECT
 
 public:
-  class RadioServiceRecieverDelegate : public RadioServiceReciever {
-   public:
-    RadioServiceRecieverDelegate()
-        : RadioServiceReciever() {}
-    void OnStationDetected(HMIRadioStationInfo info) override {}
-  };
 
   explicit RadioScreen(QWidget *parent = nullptr);
   ~RadioScreen();
 
   void Init();
 
-  std::shared_ptr<RadioServiceRecieverDelegate> GetRadioServiceRecieverDelegate() const  {
-      return radio_service_reciever_delegate_;
-  }
 
 private slots:
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
 private:
+  void OnStationDetected(HMIRadioStationInfo info) override;
 
   std::shared_ptr<HMIRadioReciever> hmi_radio_reciever_;
-  std::shared_ptr<RadioServiceRecieverDelegate> radio_service_reciever_delegate_;
 
   Ui::RadioScreen *ui;
+
+  // QWidget interface
+protected:
+  void showEvent(QShowEvent* event) override;
 };
 
 }  // hmi

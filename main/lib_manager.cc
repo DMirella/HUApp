@@ -1,0 +1,11 @@
+#include "lib_manager.h"
+
+#include "main/service_accessor.h"
+
+
+void LibManager::Init() {
+  btmedia_lib_ = std::make_shared<BTMediaLib>(
+        ServiceAccessor::GetInstance().GetMediaService());
+  radio_lib_ = std::make_shared<RadioLib>(
+        ServiceAccessor::GetInstance().GetRadioService());
+}

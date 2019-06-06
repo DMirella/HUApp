@@ -24,6 +24,7 @@ class MainWindow : public QMainWindow {
 
   void Init();
 
+
  private slots:
   void on_bRadio_clicked();
   void on_bMedia_clicked();

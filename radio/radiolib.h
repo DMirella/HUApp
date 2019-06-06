@@ -3,6 +3,7 @@
 
 #include <string>
 #include <memory>
+#include <iostream>
 
 struct RadioStationInfo {
   int station_id;
@@ -19,11 +20,15 @@ class RadioLib {
  public:
   RadioLib(std::shared_ptr<RadioLibReciever> reciever)
     : reciever_(reciever) {
+  }
+
+  void TempTest() {
     // Temp
     RadioStationInfo info;
     info.station_id = 1;
     info.station_frequency = 20;
     info.station_name = "Radio tapok";
+    reciever_->OnStationDetected(info);
   }
 
   void PlayRadioStation(int station_id) {}

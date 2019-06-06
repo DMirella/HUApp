@@ -3,7 +3,9 @@
 
 #include "radiolib.h"
 #include "hmi_radio_reciever.h"
-#include "hmi/radio/radio_service_reciever.h"
+#include "main/lib_manager.h"
+
+class RadioServiceReciever;
 
 namespace radio {
 
@@ -18,12 +20,17 @@ class RadioService : public RadioLibReciever
   RadioService();
   ~RadioService() {}
 
+  void Init();
+
  private:
   // RadioLibReciever
-  void OnStationDetected(RadioStationInfo info) override {}
+  void OnStationDetected(RadioStationInfo info) override;
 
   // HMIRadioReciever
   void onStationChanged(int station_id) override {}
+  void onRadioScreenShow() override {
+    LibManager::GetInstance().GetRadioLib()->TempTest();
+  }
 
   std::shared_ptr<RadioServiceReciever> radio_service_reciever_;
 };

@@ -35,7 +35,8 @@ SOURCES += \
     hmi/media/media_screen.cc \
     hmi/phone/phone_screen.cc \
     hmi/settings/settings_screen.cc \
-    hmi/testwindow.cc
+    hmi/testwindow.cc \
+    main/lib_manager.cc
 
 HEADERS += \
     hmi/main_window.h \
