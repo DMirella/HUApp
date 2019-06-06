@@ -17,6 +17,7 @@ namespace hmi {
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
+
  public:
   explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
@@ -28,7 +29,9 @@ class MainWindow : public QMainWindow {
 
   void on_bSettings_clicked();
 
-private:
+ private:
+
+  friend class HMIService;
   Ui::MainWindow *ui;
 
   RadioScreen radio_screen_;

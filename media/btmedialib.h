@@ -20,6 +20,8 @@ class BTMediaLib {
   BTMediaLib(std::shared_ptr<BTMediaLibReciever> reciever)
     : reciever_(reciever) {
   }
+
+  void PlayBTMedia(int device_id) {}
  private:
   std::shared_ptr<BTMediaLibReciever> reciever_;
 };

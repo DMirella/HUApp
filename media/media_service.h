@@ -2,10 +2,12 @@
 #define MEDIA_SERVICE_H
 
 #include "btmedialib.h"
+#include "hmi_media_reciever.h"
 
 namespace media {
 
-class MediaService : public BTMediaLibReciever {
+class MediaService : public BTMediaLibReciever
+                   , public HMIMediaReciever {
  public:
   MediaService(const MediaService& service) = delete;
   MediaService(MediaService&& service) = delete;
@@ -17,13 +19,11 @@ class MediaService : public BTMediaLibReciever {
 
   void start();
  private:
-  void OnDeviceDetected(const BTMediaDeviceInfo& info) override {
+  // BTMediaLibReciever
+  void OnDeviceDetected(const BTMediaDeviceInfo& info) override {}
 
-  }
-
-  void OnPlayButton(int device_id) {
-
-  }
+  // HMIMediaReciever
+  void onPlayButton(int device_id) override {}
 };
 
 }  // media
