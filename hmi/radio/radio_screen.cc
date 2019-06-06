@@ -12,12 +12,15 @@ RadioScreen::RadioScreen(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::RadioScreen) {
   ui->setupUi(this);
-
-  hmi_radio_reciever_ = ServiceAccessor::GetInstance().GetRadioService();
 }
 
 RadioScreen::~RadioScreen() {
-    delete ui;
+  delete ui;
+}
+
+void RadioScreen::Init()
+{
+  hmi_radio_reciever_ = ServiceAccessor::GetInstance().GetRadioService();
 }
 
 void RadioScreen::on_comboBox_currentIndexChanged(const QString &arg1)

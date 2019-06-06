@@ -7,6 +7,7 @@ HMIService::HMIService() {
 }
 
 void HMIService::start() {
+  main_window_.Init();
   main_window_.show();
 }
 

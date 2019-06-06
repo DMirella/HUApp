@@ -13,6 +13,11 @@ MainWindow::~MainWindow() {
   delete ui;
 }
 
+void MainWindow::Init()
+{
+  radio_screen_.Init();
+}
+
 void MainWindow::on_bRadio_clicked() {
   radio_screen_.show();
 }

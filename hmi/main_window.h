@@ -7,6 +7,7 @@
 #include "hmi/phone/phone_screen.h"
 #include "hmi/radio/radio_screen.h"
 #include "hmi/settings/settings_screen.h"
+#include "hmi/testwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,10 +18,11 @@ namespace hmi {
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
-
  public:
   explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
+
+  void Init();
 
  private slots:
   void on_bRadio_clicked();

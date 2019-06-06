@@ -22,7 +22,7 @@ class HMIService {
   void start();
 
   std::shared_ptr<RadioServiceReciever> GetRadioServiceReciever() {
-      return main_window_.radio_screen_.GetRadioServiceRecieverDelegate();
+      //return main_window_.radio_screen_.GetRadioServiceRecieverDelegate();
   }
 
  private:

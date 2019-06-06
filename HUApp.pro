@@ -34,7 +34,8 @@ SOURCES += \
     hmi/radio/radio_screen.cc \
     hmi/media/media_screen.cc \
     hmi/phone/phone_screen.cc \
-    hmi/settings/settings_screen.cc
+    hmi/settings/settings_screen.cc \
+    hmi/testwindow.cc
 
 HEADERS += \
     hmi/main_window.h \
@@ -52,14 +53,16 @@ HEADERS += \
     media/btmedialib.h \
     radio/radiolib.h \
     main/lib_manager.h \
-    tools/boostc++11.h
+    tools/boostc++11.h \
+    hmi/testwindow.h
 
 FORMS += \
     hmi/main_window.ui \
     hmi/radio/radio_screen.ui \
     hmi/media/media_screen.ui \
     hmi/phone/phone_screen.ui \
-    hmi/settings/settings_screen.ui
+    hmi/settings/settings_screen.ui \
+    hmi/testwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

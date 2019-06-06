@@ -19,12 +19,15 @@ class RadioScreen : public QMainWindow {
 public:
   class RadioServiceRecieverDelegate : public RadioServiceReciever {
    public:
-      RadioServiceRecieverDelegate()
-          : RadioServiceReciever() {}
-      void OnStationDetected(HMIRadioStationInfo info) override {}
+    RadioServiceRecieverDelegate()
+        : RadioServiceReciever() {}
+    void OnStationDetected(HMIRadioStationInfo info) override {}
   };
+
   explicit RadioScreen(QWidget *parent = nullptr);
   ~RadioScreen();
+
+  void Init();
 
   std::shared_ptr<RadioServiceRecieverDelegate> GetRadioServiceRecieverDelegate() const  {
       return radio_service_reciever_delegate_;
