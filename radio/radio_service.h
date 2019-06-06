@@ -1,9 +1,11 @@
 #ifndef RADIO_SERVICE_H
 #define RADIO_SERVICE_H
 
+#include "radiolib.h"
+
 namespace radio {
 
-class RadioService {
+class RadioService : public RadioLibReciever {
  public:
   RadioService(const RadioService& service) = delete;
   RadioService(RadioService&& service) = delete;

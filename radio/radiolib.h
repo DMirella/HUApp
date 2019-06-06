@@ -16,7 +16,7 @@ class RadioLibReciever {
 
 class RadioLib {
  public:
-  RadioLib(RadioLibReciever* reciever)
+  RadioLib(std::shared_ptr<RadioLibReciever> reciever)
     : reciever_(reciever) {
   }
  private:
