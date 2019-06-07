@@ -1,14 +1,32 @@
 #ifndef HMI_SERVICE_H
 #define HMI_SERVICE_H
 
+#include <QObject>
+
+#include <memory>
+
 #include "main_window.h"
 
 #include "hmi/radio/radio_screen.h"
 #include "radio/hmi_radio_reciever.h"
+#include "hmi/radio/radio_service_reciever.h"
 
 namespace hmi {
 
-class HMIService {
+class HMIService;
+class QHMISignalSender : public QObject {
+ signals:
+  void StationDetected(HMIRadioStationInfo info);
+ public:
+  QHMISignalSender(std::shared_ptr<HMIService> hmi_service)
+      : hmi_service_(hmi_service) { }
+  void Init();
+ private:
+  std::shared_ptr<HMIService> hmi_service_;
+};
+
+class HMIService : public RadioServiceReciever {
+
  public:
   HMIService(const HMIService& service) = delete;
   HMIService(HMIService&& service) = delete;
@@ -20,12 +38,15 @@ class HMIService {
 
   void start();
 
-  std::shared_ptr<RadioServiceReciever> GetRadioServiceReciever() {
-    return std::make_shared<RadioServiceReciever>(main_window_.radio_screen_);
-  }
-
  private:
+  friend class QHMISignalSender;
+
   MainWindow main_window_;
+  QHMISignalSender sender_;
+
+  // RadioServiceReciever interface
+ public:
+  void OnStationDetected(HMIRadioStationInfo info) override;
 };
 
 }  // hmi

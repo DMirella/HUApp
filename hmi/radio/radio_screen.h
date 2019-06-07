@@ -13,8 +13,7 @@ class RadioScreen;
 
 namespace hmi {
 
-class RadioScreen : public QMainWindow
-                  , public RadioServiceReciever {
+class RadioScreen : public QMainWindow {
   Q_OBJECT
 
 public:
@@ -28,9 +27,10 @@ public:
 private slots:
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
-private:
-  void OnStationDetected(HMIRadioStationInfo info) override;
+public slots:
+  void OnStationDetected(HMIRadioStationInfo info);
 
+private:
   std::shared_ptr<HMIRadioReciever> hmi_radio_reciever_;
 
   Ui::RadioScreen *ui;

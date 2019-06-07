@@ -35,6 +35,7 @@ class MainWindow : public QMainWindow {
  private:
 
   friend class HMIService;
+  friend class QHMISignalSender;
   Ui::MainWindow *ui;
 
   RadioScreen radio_screen_;
