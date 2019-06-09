@@ -7,6 +7,7 @@
 
 class BTMediaLib;
 class RadioLib;
+class PCMLib;
 
 class LibManager
 {
@@ -31,11 +32,16 @@ public:
   std::shared_ptr<BTMediaLib> GetBTMediaLib() const {
     return btmedia_lib_;
   }
+
+  std::shared_ptr<PCMLib> GetPCMLib() const {
+    return pcm_lib_;
+  }
 private:
   LibManager() {}
 
   std::shared_ptr<BTMediaLib> btmedia_lib_;
   std::shared_ptr<RadioLib> radio_lib_;
+  std::shared_ptr<PCMLib> pcm_lib_;
 };
 
 #endif // LIB_MANAGER_H

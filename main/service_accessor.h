@@ -6,6 +6,7 @@
 #include "hmi/hmi_service.h"
 #include "media/media_service.h"
 #include "radio/radio_service.h"
+#include "conn/pcmservice.h"
 
 class ServiceAccessor {
  public:
@@ -30,12 +31,17 @@ class ServiceAccessor {
   std::shared_ptr<radio::RadioService> GetRadioService() const {
     return radio_service_;
   }
+
+  std::shared_ptr<pcm::PCMService> GetPCMService() const {
+    return pcm_service_;
+  }
  private:
   ServiceAccessor();
 
   std::shared_ptr<hmi::HMIService> hmi_service_;
   std::shared_ptr<media::MediaService> media_service_;
   std::shared_ptr<radio::RadioService> radio_service_;
+  std::shared_ptr<pcm::PCMService> pcm_service_;
 };
 
 #endif // SERVICE_ACCESSOR_H

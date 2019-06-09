@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    conn/pcmservice.cc \
     hmi/main_window.cc \
     hmi/hmi_service.cc \
     main/main.cc \
@@ -39,9 +40,13 @@ SOURCES += \
     main/lib_manager.cc
 
 HEADERS += \
+    conn/pcmlib.h \
+    conn/pcmservice.h \
     hmi/main_window.h \
     hmi/hmi_service.h \
     hmi/media/media_service_reciever.h \
+    hmi/phone/hmiphonereciever.h \
+    hmi/phone/pcmservicereciever.h \
     hmi/radio/radio_service_reciever.h \
     main/service_accessor.h \
     media/hmi_media_reciever.h \

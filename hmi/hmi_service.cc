@@ -25,7 +25,12 @@ void HMIService::OnStationDetected(HMIRadioStationInfo info)
 
 void HMIService::OnBTMediaDeviceDetected(HMIMediaDeviceInfo info)
 {
-  sender_.OnBTMediaDeviceDetected(info);
+    sender_.OnBTMediaDeviceDetected(info);
+}
+
+void HMIService::OnPCMDeviceDetected(HMIPCMDeviceInfo info)
+{
+    sender_.OnPCMDeviceDetected(info);
 }
 
 void QHMISignalSender::Init()
@@ -39,6 +44,11 @@ void QHMISignalSender::Init()
           SIGNAL(BTMediaDeviceDetected(HMIMediaDeviceInfo)),
           &(hmi_service_->main_window_.media_screen_),
           SLOT(OnBTMediaDeviceDetected(HMIMediaDeviceInfo)));
+
+  connect(&(hmi_service_->sender_),
+          SIGNAL(PCMDeviceDetected(HMIPCMDeviceInfo)),
+          &(hmi_service_->main_window_.phone_screen_),
+          SLOT(OnPCMDeviceDetected(HMIPCMDeviceInfo)));
 }
 
 }  // hmi

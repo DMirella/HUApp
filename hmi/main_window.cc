@@ -17,6 +17,7 @@ void MainWindow::Init()
 {
   radio_screen_.Init();
   media_screen_.Init();
+  phone_screen_.Init();
 }
 
 void MainWindow::on_bRadio_clicked() {
