@@ -5,6 +5,8 @@
 #include "hmi_radio_reciever.h"
 #include "main/lib_manager.h"
 
+#include <QMessageBox>
+
 class RadioServiceReciever;
 
 namespace radio {

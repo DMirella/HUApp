@@ -2,8 +2,10 @@
 #define HMI_SERVICE_H
 
 #include <QObject>
+#include <QDebug>
 
 #include <memory>
+#include <iostream>
 
 #include "main_window.h"
 
@@ -15,12 +17,17 @@ namespace hmi {
 
 class HMIService;
 class QHMISignalSender : public QObject {
+  Q_OBJECT
  signals:
   void StationDetected(HMIRadioStationInfo info);
  public:
   QHMISignalSender(std::shared_ptr<HMIService> hmi_service)
-      : hmi_service_(hmi_service) { }
+      : hmi_service_(hmi_service) {}
   void Init();
+
+  void OnStationDetected(HMIRadioStationInfo info) {
+      emit StationDetected(info);
+  }
  private:
   std::shared_ptr<HMIService> hmi_service_;
 };

@@ -21,12 +21,11 @@ RadioService::RadioService() {
 
 void RadioService::Init()
 {
-  radio_service_reciever_ = ServiceAccessor::GetInstance().GetHMIService()->GetRadioServiceReciever();
+  radio_service_reciever_ = ServiceAccessor::GetInstance().GetHMIService();
 }
 
 void RadioService::OnStationDetected(RadioStationInfo info)
 {
-  std::cout << "RadioService";
   radio_service_reciever_->OnStationDetected(ConvertRadioLibInfoToHMIRadioInfo(info));
 }
 
