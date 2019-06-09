@@ -3,6 +3,7 @@
 #include <QObject>
 
 #include "hmi/radio/radio_service_reciever.h"
+#include "hmi/media/media_service_reciever.h"
 
 namespace hmi {
 
@@ -19,7 +20,12 @@ void HMIService::start() {
 
 void HMIService::OnStationDetected(HMIRadioStationInfo info)
 {
-    sender_.OnStationDetected(info);
+  sender_.OnStationDetected(info);
+}
+
+void HMIService::OnBTMediaDeviceDetected(HMIMediaDeviceInfo info)
+{
+  sender_.OnBTMediaDeviceDetected(info);
 }
 
 void QHMISignalSender::Init()
@@ -28,6 +34,11 @@ void QHMISignalSender::Init()
           SIGNAL(StationDetected(HMIRadioStationInfo)),
           &(hmi_service_->main_window_.radio_screen_),
           SLOT(OnStationDetected(HMIRadioStationInfo)));
+
+  connect(&(hmi_service_->sender_),
+          SIGNAL(BTMediaDeviceDetected(HMIMediaDeviceInfo)),
+          &(hmi_service_->main_window_.media_screen_),
+          SLOT(OnBTMediaDeviceDetected(HMIMediaDeviceInfo)));
 }
 
 }  // hmi

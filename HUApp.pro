@@ -41,6 +41,7 @@ SOURCES += \
 HEADERS += \
     hmi/main_window.h \
     hmi/hmi_service.h \
+    hmi/media/media_service_reciever.h \
     hmi/radio/radio_service_reciever.h \
     main/service_accessor.h \
     media/hmi_media_reciever.h \

@@ -27,6 +27,10 @@ public:
   std::shared_ptr<RadioLib> GetRadioLib() const {
     return radio_lib_;
   }
+
+  std::shared_ptr<BTMediaLib> GetBTMediaLib() const {
+    return btmedia_lib_;
+  }
 private:
   LibManager() {}
 

@@ -12,6 +12,7 @@
 #include "hmi/radio/radio_screen.h"
 #include "radio/hmi_radio_reciever.h"
 #include "hmi/radio/radio_service_reciever.h"
+#include "hmi/media/media_service_reciever.h"
 
 namespace hmi {
 
@@ -20,6 +21,7 @@ class QHMISignalSender : public QObject {
   Q_OBJECT
  signals:
   void StationDetected(HMIRadioStationInfo info);
+  void BTMediaDeviceDetected(HMIMediaDeviceInfo info);
  public:
   QHMISignalSender(std::shared_ptr<HMIService> hmi_service)
       : hmi_service_(hmi_service) {}
@@ -28,11 +30,15 @@ class QHMISignalSender : public QObject {
   void OnStationDetected(HMIRadioStationInfo info) {
       emit StationDetected(info);
   }
+  void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) {
+      emit BTMediaDeviceDetected(info);
+  }
  private:
   std::shared_ptr<HMIService> hmi_service_;
 };
 
-class HMIService : public RadioServiceReciever {
+class HMIService : public RadioServiceReciever
+                 , public MediaServiceReciever {
 
  public:
   HMIService(const HMIService& service) = delete;
@@ -54,6 +60,10 @@ class HMIService : public RadioServiceReciever {
   // RadioServiceReciever interface
  public:
   void OnStationDetected(HMIRadioStationInfo info) override;
+
+  // MediaServiceReciever interface
+ public:
+  void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) override;
 };
 
 }  // hmi

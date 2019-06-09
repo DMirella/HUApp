@@ -21,6 +21,15 @@ class BTMediaLib {
     : reciever_(reciever) {
   }
 
+  void TempTest() {
+    // Temp
+    BTMediaDeviceInfo info;
+    info.device_id = 1;
+    info.device_name = "Meizu";
+    info.song_name = "Nirvana";
+    reciever_->OnDeviceDetected(info);
+  }
+
   void PlayBTMedia(int device_id) {}
  private:
   std::shared_ptr<BTMediaLibReciever> reciever_;

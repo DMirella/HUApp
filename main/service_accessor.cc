@@ -15,4 +15,5 @@ ServiceAccessor& ServiceAccessor::GetInstance() {
 void ServiceAccessor::Init()
 {
   radio_service_->Init();
+  media_service_->Init();
 }
