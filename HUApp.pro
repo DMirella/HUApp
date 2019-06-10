@@ -47,6 +47,7 @@ HEADERS += \
     hmi/media/media_service_reciever.h \
     hmi/phone/hmiphonereciever.h \
     hmi/phone/pcmservicereciever.h \
+    hmi/radio/emulator/radiolibemulatorreciever.h \
     hmi/radio/radio_service_reciever.h \
     main/service_accessor.h \
     media/hmi_media_reciever.h \

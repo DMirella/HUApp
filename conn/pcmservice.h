@@ -32,6 +32,7 @@ class PCMService : public PCMLibReciever
 
   // PCMLibReciever interface
   void OnDeviceDetected(const PCMDeviceInfo &info) override;
+  void OnConnectPhoneRequest(ConnectRequestPhoneInfo info) override;
 
   std::shared_ptr<PCMServiceReciever> hmi_reciever_;
 };

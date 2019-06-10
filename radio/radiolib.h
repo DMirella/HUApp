@@ -4,6 +4,9 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include <vector>
+
+#include <QDebug>
 
 struct RadioStationInfo {
   int station_id;
@@ -22,18 +25,19 @@ class RadioLib {
     : reciever_(reciever) {
   }
 
-  void TempTest() {
-    // Temp
+  void EmulateStationDetected(std::string station_name, int station_frequency) {
     RadioStationInfo info;
-    info.station_id = 1;
-    info.station_frequency = 20;
-    info.station_name = "Radio tapok";
+    info.station_id  = radio_stations_.size();
+    info.station_name = station_name;
+    info.station_frequency = station_frequency;
+    radio_stations_.push_back(info);
     reciever_->OnStationDetected(info);
   }
 
   void PlayRadioStation(int station_id) {}
  private:
   std::shared_ptr<RadioLibReciever> reciever_;
+  std::vector<RadioStationInfo> radio_stations_;
 };
 
 #endif // RADIOLIB_H

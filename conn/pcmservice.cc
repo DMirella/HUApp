@@ -3,6 +3,8 @@
 #include <vector>
 #include <algorithm>
 
+#include <QDebug>
+
 #include "main/service_accessor.h"
 
 
@@ -30,7 +32,13 @@ void PCMService::Init()
 
 void PCMService::OnDeviceDetected(const PCMDeviceInfo &info)
 {
-    hmi_reciever_->OnPCMDeviceDetected(ConvertPCMLibInfoToHMIPCMDeviceInfo(info));
+  hmi_reciever_->OnPCMDeviceDetected(ConvertPCMLibInfoToHMIPCMDeviceInfo(info));
+}
+
+void PCMService::OnConnectPhoneRequest(ConnectRequestPhoneInfo info)
+{
+  qDebug() << "PCMService::OnConnectPhoneRequest";
+  qDebug() << info.device_id << " " << info.technology;
 }
 
 }  // namespace pcm

@@ -5,6 +5,7 @@
 
 #include "ui_radio_screen.h"
 #include "main/service_accessor.h"
+#include "main/lib_manager.h"
 
 #include <iostream>
 
@@ -38,6 +39,13 @@ void RadioScreen::OnStationDetected(HMIRadioStationInfo info)
 void RadioScreen::showEvent(QShowEvent* event)
 {
   hmi_radio_reciever_->onRadioScreenShow();
+}
+
+void RadioScreen::on_pushButton_clicked()
+{
+  std::string station_name = ui->lineEdit->text().toLocal8Bit().constData();;
+  int station_frequency = ui->lineEdit_2->text().toInt();
+  LibManager::GetInstance().GetRadioLib()->EmulateStationDetected(station_name, station_frequency);
 }
 
 }  // hmi

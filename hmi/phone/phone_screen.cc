@@ -5,6 +5,12 @@
 
 #include <QDebug>
 
+namespace  {
+const std::string kCarPlay = "CarPlay";
+const std::string kAndroidAuto = "AndroidAuto";
+const std::string kMirrorLink = "MirrorLink";
+}
+
 namespace hmi {
 
 PhoneScreen::PhoneScreen(QWidget *parent) :
@@ -28,6 +34,8 @@ void PhoneScreen::OnPCMDeviceDetected(HMIPCMDeviceInfo info)
 {
     ui->comboBox->addItem(QString(info.device_name.c_str()));
     devices_id_map_info_[ui->comboBox->count() - 1] = info;
+
+    UpdateTechnologyList(ui->comboBox->currentIndex());
 }
 
 void PhoneScreen::showEvent(QShowEvent *event)
@@ -37,29 +45,47 @@ void PhoneScreen::showEvent(QShowEvent *event)
 
 void PhoneScreen::on_comboBox_currentIndexChanged(int index)
 {
-  qDebug() << "on_comboBox_currentIndexChanged " << index;
-    ui->comboBox_2->clear();
-    if (index != -1) {
-      qDebug() << "on_comboBox_currentIndexChanged " << devices_id_map_info_[index].enable_technologies_.size();
-        auto current_device_info = devices_id_map_info_[index];
-        for (auto it : current_device_info.enable_technologies_) {
-            auto add_technology_to_list = [this](std::string technology_string) {
-                ui->comboBox_2->addItem(QString(technology_string.c_str()));
-            };
+  UpdateTechnologyList(index);
+}
 
-            switch (it) {
-             case HMIPhoneTechology::CarPlay:
-                add_technology_to_list("CarPlay");
-                break;
-            case HMIPhoneTechology::MirrorLink:
-               add_technology_to_list("MirrorLink");
-               break;
-            case HMIPhoneTechology::AndroidAuto:
-               add_technology_to_list("AndroidAuto");
-               break;
-            }
-        }
-    }
+void PhoneScreen::UpdateTechnologyList(int index)
+{
+  ui->comboBox_2->clear();
+  if (index != -1) {
+      auto current_device_info = devices_id_map_info_[index];
+      for (auto it : current_device_info.enable_technologies_) {
+          auto add_technology_to_list = [this](std::string technology_string) {
+              ui->comboBox_2->addItem(QString(technology_string.c_str()));
+          };
+
+          switch (it) {
+           case HMIPhoneTechology::CarPlay:
+              add_technology_to_list(kCarPlay);
+              break;
+          case HMIPhoneTechology::MirrorLink:
+             add_technology_to_list(kMirrorLink);
+             break;
+          case HMIPhoneTechology::AndroidAuto:
+             add_technology_to_list(kAndroidAuto);
+             break;
+          }
+      }
+  }
+}
+
+void PhoneScreen::on_pushButton_clicked()
+{
+  ConnectRequestPhoneInfo info;
+  auto device_info = devices_id_map_info_[ui->comboBox->currentIndex()];
+  info.device_id = device_info.device_id;
+  if (ui->comboBox_2->currentText() == QString(kCarPlay.c_str())) {
+    info.technology = ConnectRequestPhoneInfo::Technology::CarPlay;
+  } else if (ui->comboBox_2->currentText() == QString(kAndroidAuto.c_str())) {
+    info.technology = ConnectRequestPhoneInfo::Technology::AndroidAuto;
+  } else if (ui->comboBox_2->currentText() == QString(kMirrorLink.c_str())) {
+    info.technology = ConnectRequestPhoneInfo::Technology::MirrorLink;
+  }
+  pcm_reciever_->OnConnectPhoneRequest(info);
 }
 
 }  // hmi

@@ -32,7 +32,11 @@ class PhoneScreen : public QMainWindow {
 private slots:
   void on_comboBox_currentIndexChanged(int index);
 
+  void on_pushButton_clicked();
+
 private:
+  void UpdateTechnologyList(int index);
+
   Ui::PhoneScreen *ui;
 
   std::shared_ptr<HMIPhoneReciever> pcm_reciever_;

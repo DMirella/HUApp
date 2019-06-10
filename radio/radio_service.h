@@ -31,7 +31,6 @@ class RadioService : public RadioLibReciever
   // HMIRadioReciever
   void onStationChanged(int station_id) override {}
   void onRadioScreenShow() override {
-    LibManager::GetInstance().GetRadioLib()->TempTest();
   }
 
   std::shared_ptr<RadioServiceReciever> radio_service_reciever_;

@@ -26,6 +26,8 @@ public:
 private slots:
     void on_comboBox_currentIndexChanged(const QString &arg1);
 
+    void on_pushButton_clicked();
+
 public slots:
   void OnStationDetected(HMIRadioStationInfo info);
 
