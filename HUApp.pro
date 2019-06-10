@@ -28,6 +28,7 @@ SOURCES += \
     conn/pcmservice.cc \
     hmi/main_window.cc \
     hmi/hmi_service.cc \
+    hmi/phone/phone_screen_emulator.cc \
     main/main.cc \
     main/service_accessor.cc \
     radio/radio_service.cc \
@@ -47,6 +48,7 @@ HEADERS += \
     hmi/media/media_service_reciever.h \
     hmi/phone/hmiphonereciever.h \
     hmi/phone/pcmservicereciever.h \
+    hmi/phone/phone_screen_emulator.h \
     hmi/radio/emulator/radiolibemulatorreciever.h \
     hmi/radio/radio_service_reciever.h \
     main/service_accessor.h \
@@ -66,6 +68,7 @@ HEADERS += \
 
 FORMS += \
     hmi/main_window.ui \
+    hmi/phone/phone_screen_emulator.ui \
     hmi/radio/radio_screen.ui \
     hmi/media/media_screen.ui \
     hmi/phone/phone_screen.ui \

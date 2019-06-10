@@ -10,6 +10,7 @@
 
 #include "hmi/phone/hmiphonereciever.h"
 #include "hmi/phone/pcmservicereciever.h"
+#include "hmi/phone/phone_screen_emulator.h"
 
 namespace Ui {
 class PhoneScreen;
@@ -41,6 +42,8 @@ private:
 
   std::shared_ptr<HMIPhoneReciever> pcm_reciever_;
   std::unordered_map<int, HMIPCMDeviceInfo> devices_id_map_info_;
+
+  PhoneScreenEmulator phone_screen_emulator_;
 
   // QWidget interface
   void showEvent(QShowEvent *event) override;
