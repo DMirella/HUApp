@@ -29,4 +29,9 @@ void RadioService::OnStationDetected(RadioStationInfo info)
   radio_service_reciever_->OnStationDetected(ConvertRadioLibInfoToHMIRadioInfo(info));
 }
 
+void RadioService::OnStationLost(int station_id)
+{
+  radio_service_reciever_->OnStationLost(station_id);
+}
+
 }  // namespace radio

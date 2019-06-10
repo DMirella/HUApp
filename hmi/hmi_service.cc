@@ -23,14 +23,19 @@ void HMIService::OnStationDetected(HMIRadioStationInfo info)
   sender_.OnStationDetected(info);
 }
 
+void HMIService::OnStationLost(int station_id)
+{
+  sender_.OnStationLost(station_id);
+}
+
 void HMIService::OnBTMediaDeviceDetected(HMIMediaDeviceInfo info)
 {
-    sender_.OnBTMediaDeviceDetected(info);
+  sender_.OnBTMediaDeviceDetected(info);
 }
 
 void HMIService::OnPCMDeviceDetected(HMIPCMDeviceInfo info)
 {
-    sender_.OnPCMDeviceDetected(info);
+  sender_.OnPCMDeviceDetected(info);
 }
 
 void QHMISignalSender::Init()
@@ -39,6 +44,11 @@ void QHMISignalSender::Init()
           SIGNAL(StationDetected(HMIRadioStationInfo)),
           &(hmi_service_->main_window_.radio_screen_),
           SLOT(OnStationDetected(HMIRadioStationInfo)));
+
+  connect(&(hmi_service_->sender_),
+          SIGNAL(StationLost(int)),
+          &(hmi_service_->main_window_.radio_screen_),
+          SLOT(OnStationLost(int)));
 
   connect(&(hmi_service_->sender_),
           SIGNAL(BTMediaDeviceDetected(HMIMediaDeviceInfo)),

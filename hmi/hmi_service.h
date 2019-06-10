@@ -22,6 +22,7 @@ class QHMISignalSender : public QObject {
   Q_OBJECT
  signals:
   void StationDetected(HMIRadioStationInfo info);
+  void StationLost(int station_id);
   void BTMediaDeviceDetected(HMIMediaDeviceInfo info);
   void PCMDeviceDetected(HMIPCMDeviceInfo info);
  public:
@@ -31,6 +32,9 @@ class QHMISignalSender : public QObject {
 
   void OnStationDetected(HMIRadioStationInfo info) {
       emit StationDetected(info);
+  }
+  void OnStationLost(int station_id) {
+      emit StationLost(station_id);
   }
   void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) {
       emit BTMediaDeviceDetected(info);
@@ -65,6 +69,7 @@ class HMIService : public RadioServiceReciever
 
   // RadioServiceReciever interface
   void OnStationDetected(HMIRadioStationInfo info) override;
+  void OnStationLost(int station_id) override;
 
   // MediaServiceReciever interface
   void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) override;

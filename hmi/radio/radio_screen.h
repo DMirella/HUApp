@@ -2,7 +2,11 @@
 #define RADIO_SCREEN_H
 
 #include <QMainWindow>
+#include <QHash>
+#include <QString>
+
 #include <memory>
+#include <unordered_map>
 
 #include "radio_service_reciever.h"
 #include "radio/hmi_radio_reciever.h"
@@ -28,11 +32,16 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 public slots:
   void OnStationDetected(HMIRadioStationInfo info);
+  void OnStationLost(int station_id);
 
 private:
   std::shared_ptr<HMIRadioReciever> hmi_radio_reciever_;
+  QHash<QString, int> radiolib_emulator_stations_;
+  QHash<int, QString> radio_name_by_id_map_;
 
   Ui::RadioScreen *ui;
 

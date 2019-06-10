@@ -27,6 +27,7 @@ class RadioService : public RadioLibReciever
  private:
   // RadioLibReciever
   void OnStationDetected(RadioStationInfo info) override;
+  void OnStationLost(int station_id) override;
 
   // HMIRadioReciever
   void onStationChanged(int station_id) override {}

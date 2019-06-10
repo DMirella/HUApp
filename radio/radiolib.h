@@ -16,7 +16,8 @@ struct RadioStationInfo {
 
 class RadioLibReciever {
  public:
-    virtual void OnStationDetected(RadioStationInfo info) = 0;
+  virtual void OnStationDetected(RadioStationInfo info) = 0;
+  virtual void OnStationLost(int station_id) = 0;
 };
 
 class RadioLib {
@@ -32,6 +33,17 @@ class RadioLib {
     info.station_frequency = station_frequency;
     radio_stations_.push_back(info);
     reciever_->OnStationDetected(info);
+  }
+
+  void EmulateStationLost(int station_frequency) {
+    qDebug() << "EmulateStationLost: " << station_frequency;
+    for (int i = 0; i < radio_stations_.size(); i++) {
+      if (radio_stations_[i].station_frequency == station_frequency) {
+        reciever_->OnStationLost(radio_stations_[i].station_id);
+        radio_stations_.erase(radio_stations_.begin() + i);
+        break;
+      }
+    }
   }
 
   void PlayRadioStation(int station_id) {}

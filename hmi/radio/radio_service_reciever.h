@@ -14,6 +14,7 @@ class RadioServiceReciever : public QObject {
  public:
   RadioServiceReciever() {}
   virtual void OnStationDetected(HMIRadioStationInfo info) = 0;
+  virtual void OnStationLost(int station_id) = 0;
 };
 
 #endif // RADIO_SERVICE_RECIEVER_H
