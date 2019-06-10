@@ -4,6 +4,7 @@
 #include <QDebug>
 
 #include "main/service_accessor.h"
+#include "main/lib_manager.h"
 
 namespace hmi {
 
@@ -35,9 +36,16 @@ void MediaScreen::on_pushButton_clicked()
   UpdateMediaButtonState();
 }
 
-void MediaScreen::OnBTMediaDeviceDetected(HMIMediaDeviceInfo info)
+void MediaScreen::OnMediaDeviceDetected(HMIMediaDeviceInfo info)
 {
   ui->comboBox->addItem(QString(info.device_name.c_str()));
+  media_device_name_by_id_map_[info.device_id] = QString(info.device_name.c_str());
+}
+
+void MediaScreen::OnMediaDeviceLost(int device_id)
+{
+  ui->comboBox->removeItem(ui->comboBox->findText(
+                             media_device_name_by_id_map_[device_id]));
 }
 
 void MediaScreen::UpdateMediaButtonState()
@@ -51,5 +59,35 @@ void MediaScreen::UpdateMediaButtonState()
     }
 }
 
+void MediaScreen::on_pushButton_2_clicked()
+{
+  std::string device_name = ui->lineEdit->text().toLocal8Bit().constData();
+  std::string device_mac_adress = ui->lineEdit_2->text().toLocal8Bit().constData();
+  std::string device_song_name = ui->lineEdit_3->text().toLocal8Bit().constData();
+  LibManager::GetInstance().GetBTMediaLib()->EmulateDeviceDetected(
+        device_mac_adress,
+        device_name,
+        device_song_name);
+
+  medialib_emulator_devices_[QString(device_name.c_str())] = device_mac_adress;
+
+  QListWidgetItem* item = new QListWidgetItem;
+  item->setText(QString(device_name.c_str()));
+  ui->listWidget->addItem(item);
+}
+
+void MediaScreen::on_pushButton_3_clicked()
+{
+  int index = ui->listWidget->currentRow();
+  if (index != -1) {
+    QString current_text = ui->listWidget->currentItem()->text();
+    LibManager::GetInstance().GetBTMediaLib()->EmulateDeviceLost(
+        medialib_emulator_devices_[current_text]);
+
+    QListWidgetItem *it = ui->listWidget->takeItem(index);
+    delete it;
+    medialib_emulator_devices_.erase(medialib_emulator_devices_.find(current_text));
+  }
+}
 
 }  // hmi

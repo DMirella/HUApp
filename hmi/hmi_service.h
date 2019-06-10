@@ -23,7 +23,8 @@ class QHMISignalSender : public QObject {
  signals:
   void StationDetected(HMIRadioStationInfo info);
   void StationLost(int station_id);
-  void BTMediaDeviceDetected(HMIMediaDeviceInfo info);
+  void MediaDeviceDetected(HMIMediaDeviceInfo info);
+  void MediaDeviceLost(int device_id);
   void PCMDeviceDetected(HMIPCMDeviceInfo info);
  public:
   QHMISignalSender(std::shared_ptr<HMIService> hmi_service)
@@ -36,8 +37,11 @@ class QHMISignalSender : public QObject {
   void OnStationLost(int station_id) {
       emit StationLost(station_id);
   }
-  void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) {
-      emit BTMediaDeviceDetected(info);
+  void OnMediaDeviceDetected(HMIMediaDeviceInfo info) {
+      emit MediaDeviceDetected(info);
+  }
+  void OnMediaDeviceLost(int device_id) {
+      emit MediaDeviceLost(device_id);
   }
   void OnPCMDeviceDetected(HMIPCMDeviceInfo info) {
       emit PCMDeviceDetected(info);
@@ -72,7 +76,8 @@ class HMIService : public RadioServiceReciever
   void OnStationLost(int station_id) override;
 
   // MediaServiceReciever interface
-  void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) override;
+  void OnMediaDeviceDetected(HMIMediaDeviceInfo info) override;
+  void OnMediaDeviceLost(int device_id) override;
 
   // PCMServiceReciever interface
   void OnPCMDeviceDetected(HMIPCMDeviceInfo info) override;

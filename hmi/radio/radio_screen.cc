@@ -42,8 +42,6 @@ void RadioScreen::OnStationDetected(HMIRadioStationInfo info)
 
 void RadioScreen::OnStationLost(int station_id)
 {
-  qDebug() << station_id << " " <<  radio_name_by_id_map_[station_id]
-              << " "<< ui->comboBox->findText(radio_name_by_id_map_[station_id]);
   ui->comboBox->removeItem(ui->comboBox->findText(radio_name_by_id_map_[station_id]));
 }
 
@@ -54,7 +52,7 @@ void RadioScreen::showEvent(QShowEvent* event)
 
 void RadioScreen::on_pushButton_clicked()
 {
-  std::string station_name = ui->lineEdit->text().toLocal8Bit().constData();;
+  std::string station_name = ui->lineEdit->text().toLocal8Bit().constData();
   int station_frequency = ui->lineEdit_2->text().toInt();
   LibManager::GetInstance().GetRadioLib()->EmulateStationDetected(station_name, station_frequency);
 

@@ -28,9 +28,14 @@ void HMIService::OnStationLost(int station_id)
   sender_.OnStationLost(station_id);
 }
 
-void HMIService::OnBTMediaDeviceDetected(HMIMediaDeviceInfo info)
+void HMIService::OnMediaDeviceDetected(HMIMediaDeviceInfo info)
 {
-  sender_.OnBTMediaDeviceDetected(info);
+  sender_.OnMediaDeviceDetected(info);
+}
+
+void HMIService::OnMediaDeviceLost(int device_id)
+{
+  sender_.OnMediaDeviceLost(device_id);
 }
 
 void HMIService::OnPCMDeviceDetected(HMIPCMDeviceInfo info)
@@ -51,9 +56,14 @@ void QHMISignalSender::Init()
           SLOT(OnStationLost(int)));
 
   connect(&(hmi_service_->sender_),
-          SIGNAL(BTMediaDeviceDetected(HMIMediaDeviceInfo)),
+          SIGNAL(MediaDeviceDetected(HMIMediaDeviceInfo)),
           &(hmi_service_->main_window_.media_screen_),
-          SLOT(OnBTMediaDeviceDetected(HMIMediaDeviceInfo)));
+          SLOT(OnMediaDeviceDetected(HMIMediaDeviceInfo)));
+
+  connect(&(hmi_service_->sender_),
+          SIGNAL(MediaDeviceLost(int)),
+          &(hmi_service_->main_window_.media_screen_),
+          SLOT(OnMediaDeviceLost(int)));
 
   connect(&(hmi_service_->sender_),
           SIGNAL(PCMDeviceDetected(HMIPCMDeviceInfo)),

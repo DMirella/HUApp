@@ -13,7 +13,8 @@ class MediaServiceReciever : public QObject {
     Q_OBJECT
  public:
   MediaServiceReciever() {}
-  virtual void OnBTMediaDeviceDetected(HMIMediaDeviceInfo info) = 0;
+  virtual void OnMediaDeviceDetected(HMIMediaDeviceInfo info) = 0;
+  virtual void OnMediaDeviceLost(int device_id) = 0;
 };
 
 #endif // MEDIA_SERVICE_RECIEVER_H

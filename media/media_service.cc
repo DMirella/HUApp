@@ -29,7 +29,12 @@ void MediaService::Init()
 
 void MediaService::OnDeviceDetected(const BTMediaDeviceInfo &info)
 {
-  reciever_->OnBTMediaDeviceDetected(ConvertBTMediaLibInfoToHMIMediaDeviceInfo(info));
+  reciever_->OnMediaDeviceDetected(ConvertBTMediaLibInfoToHMIMediaDeviceInfo(info));
+}
+
+void MediaService::OnDeviceLost(int device_id)
+{
+  reciever_->OnMediaDeviceLost(device_id);
 }
 
 }  // media

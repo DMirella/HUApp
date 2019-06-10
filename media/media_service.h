@@ -25,18 +25,19 @@ class MediaService : public BTMediaLibReciever
  private:
   // BTMediaLibReciever
   void OnDeviceDetected(const BTMediaDeviceInfo& info) override;
+  void OnDeviceLost(int device_id) override;
 
   // HMIMediaReciever
   void onPlayButton(int device_id) override {
-      qDebug() << "playbtn media pressed\n";
+    qDebug() << "playbtn media pressed\n";
   }
 
   void onPauseButton(int device_id) override {
-      qDebug() << "pausebtn media pressed\n";
+    qDebug() << "pausebtn media pressed\n";
   }
 
   void onBTMediaScreenShow() override {
-      LibManager::GetInstance().GetBTMediaLib()->TempTest();
+    qDebug() << "MediaService::onBTMediaScreenShow\n";
   }
 
   std::shared_ptr<MediaServiceReciever> reciever_;
