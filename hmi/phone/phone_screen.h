@@ -2,8 +2,11 @@
 #define PHONE_SCREEN_H
 
 #include <QMainWindow>
+#include <QString>
+#include <QHash>
 
 #include <memory>
+#include <unordered_map>
 
 #include "hmi/phone/hmiphonereciever.h"
 #include "hmi/phone/pcmservicereciever.h"
@@ -26,10 +29,14 @@ class PhoneScreen : public QMainWindow {
  public slots:
   void OnPCMDeviceDetected(HMIPCMDeviceInfo info);
 
- private:
+private slots:
+  void on_comboBox_currentIndexChanged(int index);
+
+private:
   Ui::PhoneScreen *ui;
 
   std::shared_ptr<HMIPhoneReciever> pcm_reciever_;
+  std::unordered_map<int, HMIPCMDeviceInfo> devices_id_map_info_;
 
   // QWidget interface
   void showEvent(QShowEvent *event) override;

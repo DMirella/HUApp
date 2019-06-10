@@ -27,7 +27,6 @@ class PCMService : public PCMLibReciever
 
   // HMIPhoneReciever
   virtual void OnPhoneScreenShown() override {
-    qDebug() << "PCMService: OnPhoneScreenShown";
     LibManager::GetInstance().GetPCMLib()->TempTest();
   }
 
