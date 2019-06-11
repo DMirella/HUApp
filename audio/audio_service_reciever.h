@@ -8,7 +8,7 @@ namespace audio {
 class AudioServiceReciever {
  public:
   AudioServiceReciever() {}
-  virtual void StopMainAudioSource(MainAudioSource source) {}
+  virtual void StopMainAudioSource(MainAudioSource source) = 0;
   virtual void StopAltAudioSource(AltAudioSource source) {}
 };
 

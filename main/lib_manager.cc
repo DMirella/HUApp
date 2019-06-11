@@ -1,5 +1,5 @@
 #include "lib_manager.h"
-
+#include "audio/audiolib.h"
 #include "main/service_accessor.h"
 
 void LibManager::Init() {
@@ -9,4 +9,5 @@ void LibManager::Init() {
         ServiceAccessor::GetInstance().GetRadioService());
   pcm_lib_ = std::make_shared<PCMLib>(
         ServiceAccessor::GetInstance().GetPCMService());
+  audio_lib_ = std::make_shared<AudioLib>();
 }

@@ -33,8 +33,10 @@ class RadioService : public RadioLibReciever
 
   // HMIRadioReciever
   void onStationChanged(int station_id) override;
-  void onRadioScreenShow() override {
-  }
+  void onRadioScreenShow() override {}
+
+  // AudioServiceReciever
+  void StopMainAudioSource(audio::MainAudioSource source) override;
 
   std::shared_ptr<RadioServiceReciever> radio_service_reciever_;
 };

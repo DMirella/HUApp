@@ -24,21 +24,10 @@ class AudioService {
 
   void Init();
 
-  void RequestPlayMainAudioSource(MainAudioSource source) {
-    qDebug() << "AudioService::RequestPlayMainAudioSource";
-  }
-
-  void RequestPlayAltAudioSource(AltAudioSource source) {
-    qDebug() << "AudioService::RequestPlayAltAudioSource";
-  }
-
-  void RequestStopMainAudioSource(MainAudioSource source) {
-    qDebug() << "AudioService::RequestStopMainAudioSource";
-  }
-
-  void RequestStopAltAudioSource(AltAudioSource source) {
-    qDebug() << "AudioService::RequestStopAltAudioSource";
-  }
+  void RequestPlayMainAudioSource(MainAudioSource source);
+  void RequestStopMainAudioSource(MainAudioSource source);
+  void RequestPlayAltAudioSource(AltAudioSource source);
+  void RequestStopAltAudioSource(AltAudioSource source);
  private:
   MainAudioSource main_audio_source_;
   AltAudioSource alt_audio_source_;

@@ -4,14 +4,16 @@
 namespace audio {
 
 enum class MainAudioSource {
-  SRC_RADIO = 0,
+  SRC_EMPTY = 0,
+  SRC_RADIO ,
   SRC_MEDIA,
   SRC_PHONE_MEDIA,
   SRC_PHONE_PHONECALL
 };
 
 enum class AltAudioSource {
-  SRC_PHONE_NAVI = 0
+  SRC_EMPTY = 0,
+  SRC_PHONE_NAVI
 };
 
 }

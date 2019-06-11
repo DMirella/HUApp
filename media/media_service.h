@@ -36,6 +36,9 @@ class MediaService : public BTMediaLibReciever
     qDebug() << "MediaService::onBTMediaScreenShow\n";
   }
 
+  // AudioServiceReciever interface
+  void StopMainAudioSource(audio::MainAudioSource source) override {}
+
   std::shared_ptr<MediaServiceReciever> reciever_;
 };
 

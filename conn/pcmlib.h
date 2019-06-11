@@ -58,27 +58,51 @@ class PCMLib {
   }
 
   void EmulateRequestPhoneMediaStart() {
+    qDebug() << "Start phone media requested";
     reciever_->OnPhoneMediaStart();
+    qDebug() << "Start phone media successful finished!";
   }
 
   void EmulateRequestPhoneMediaStop() {
+    qDebug() << "Stop phone media requested";
     reciever_->OnPhoneMediaStop();
+    qDebug() << "Stop phone media successful finished!";
   }
 
   void EmulateRequestPhonecallStart() {
+    qDebug() << "Start phonecall requested";
     reciever_->OnPhonePhonecallStart();
+    qDebug() << "Start phonecall successful finished!";
   }
 
   void EmulateRequestPhonecallStop() {
+    qDebug() << "Stop phonecall requested";
     reciever_->OnPhonePhonecallStop();
+    qDebug() << "Stop phonecall successful finished!";
   }
 
   void EmulateRequestPhoneNavigationStart() {
+    qDebug() << "Start phone navigation requested";
     reciever_->OnPhoneNavigationStart();
+    qDebug() << "Start phone successful navigation finished!";
   }
 
   void EmulateRequestPhoneNavigationStop() {
+    qDebug() << "Stop phone navigation requested";
     reciever_->OnPhoneNavigationStop();
+    qDebug() << "Stop phone successful navigation successful finished!";
+  }
+
+  void ConnectDevice(int device_id, PCMDeviceInfo::Techology technology) {
+    qDebug() << "PCMLib::ConnectDevice: success connect!";
+  }
+
+  void StopPhoneMedia() {
+    qDebug() << "PCMLib::StopPhoneMedia: success stop media!";
+  }
+
+  void StopPhoneNavigation() {
+    qDebug() << "PCMLib::StopPhoneMedia: success stop navigation!";
   }
 
  private:
