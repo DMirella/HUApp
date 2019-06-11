@@ -32,7 +32,7 @@ class RadioService : public RadioLibReciever
   void OnStationLost(int station_id) override;
 
   // HMIRadioReciever
-  void onStationChanged(int station_id) override {}
+  void onStationChanged(int station_id) override;
   void onRadioScreenShow() override {
   }
 

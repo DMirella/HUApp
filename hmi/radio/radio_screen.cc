@@ -30,14 +30,14 @@ void RadioScreen::Init()
 
 void RadioScreen::on_comboBox_currentIndexChanged(const QString &arg1)
 {
-
+  hmi_radio_reciever_->onStationChanged(radio_id_by_name_map_[arg1]);
 }
 
 void RadioScreen::OnStationDetected(HMIRadioStationInfo info)
 {
   ui->comboBox->addItem(QString(info.station_name.c_str()));
   radio_name_by_id_map_[info.station_id] = QString(info.station_name.c_str());
-  qDebug() <<  info.station_id << " " <<  QString(info.station_name.c_str());
+  radio_id_by_name_map_[QString(info.station_name.c_str())] = info.station_id;
 }
 
 void RadioScreen::OnStationLost(int station_id)

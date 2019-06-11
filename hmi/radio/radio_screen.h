@@ -42,6 +42,7 @@ private:
   std::shared_ptr<HMIRadioReciever> hmi_radio_reciever_;
   QHash<QString, int> radiolib_emulator_stations_;
   QHash<int, QString> radio_name_by_id_map_;
+  QHash<QString, int> radio_id_by_name_map_;
 
   Ui::RadioScreen *ui;
 

@@ -46,7 +46,14 @@ class RadioLib {
     }
   }
 
-  void PlayRadioStation(int station_id) {}
+  void PlayRadioStation(int station_id) {
+    qDebug() << "RadioLib::PlayRadioStation";
+  }
+
+  void StopCurrentRadioStation()  {
+    qDebug() << "RadioLib::StopCurrentRadioStation";
+  }
+
  private:
   std::shared_ptr<RadioLibReciever> reciever_;
   std::vector<RadioStationInfo> radio_stations_;

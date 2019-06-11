@@ -1,7 +1,10 @@
 #include "radio_service.h"
 
-#include "main/service_accessor.h"
 #include "hmi/radio/radio_service_reciever.h"
+#include "main/service_accessor.h"
+#include "audio/audio_sources.h"
+
+#include <QDebug>
 
 namespace  {
 
@@ -32,6 +35,16 @@ void RadioService::OnStationDetected(RadioStationInfo info)
 void RadioService::OnStationLost(int station_id)
 {
   radio_service_reciever_->OnStationLost(station_id);
+}
+
+void RadioService::onStationChanged(int station_id)
+{
+  ServiceAccessor::GetInstance().GetAudioService()->RequestStopMainAudioSource(
+        audio::MainAudioSource::SRC_RADIO);
+  LibManager::GetInstance().GetRadioLib()->StopCurrentRadioStation();
+  ServiceAccessor::GetInstance().GetAudioService()->RequestPlayMainAudioSource(
+        audio::MainAudioSource::SRC_RADIO);
+  LibManager::GetInstance().GetRadioLib()->PlayRadioStation(station_id);
 }
 
 }  // namespace radio
