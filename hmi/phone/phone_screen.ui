@@ -158,6 +158,9 @@
         <height>91</height>
        </rect>
       </property>
+      <property name="selectionMode">
+       <enum>QAbstractItemView::ExtendedSelection</enum>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">

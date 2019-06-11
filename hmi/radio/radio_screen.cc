@@ -68,7 +68,8 @@ void RadioScreen::on_pushButton_2_clicked()
   int index = ui->listWidget->currentRow();
   if (index != -1) {
     QString current_text = ui->listWidget->currentItem()->text();
-    LibManager::GetInstance().GetRadioLib()->EmulateStationLost(radiolib_emulator_stations_[current_text]);
+    LibManager::GetInstance().GetRadioLib()->EmulateStationLost(
+          radiolib_emulator_stations_[current_text]);
 
     QListWidgetItem *it = ui->listWidget->takeItem(index);
     delete it;

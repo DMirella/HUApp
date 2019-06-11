@@ -29,19 +29,23 @@ class PhoneScreen : public QMainWindow {
 
  public slots:
   void OnPCMDeviceDetected(HMIPCMDeviceInfo info);
+  void OnPCMDeviceLost(int device_id);
 
 private slots:
   void on_comboBox_currentIndexChanged(int index);
-
   void on_pushButton_clicked();
+  void on_pushButton_3_clicked();
+
+  void on_pushButton_2_clicked();
 
 private:
-  void UpdateTechnologyList(int index);
+  void UpdateTechnologyList(QString device_name);
 
   Ui::PhoneScreen *ui;
 
   std::shared_ptr<HMIPhoneReciever> pcm_reciever_;
-  std::unordered_map<int, HMIPCMDeviceInfo> devices_id_map_info_;
+  QHash<QString, HMIPCMDeviceInfo> devices_id_map_info_;
+  QHash<int, QString> device_id_to_device_name_map_;
 
   PhoneScreenEmulator phone_screen_emulator_;
 

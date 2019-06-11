@@ -12,7 +12,7 @@ HMIPCMDeviceInfo ConvertPCMLibInfoToHMIPCMDeviceInfo(const PCMDeviceInfo& info) 
   HMIPCMDeviceInfo result;
   result.device_id = info.device_id;
   result.device_name = info.device_name;
-  for (auto it : info.enable_technologies_) {
+  for (auto it : info.enable_technologies) {
     result.enable_technologies_.push_back(static_cast<HMIPhoneTechology>(it));
   }
   return result;
@@ -33,6 +33,11 @@ void PCMService::Init()
 void PCMService::OnDeviceDetected(const PCMDeviceInfo &info)
 {
   hmi_reciever_->OnPCMDeviceDetected(ConvertPCMLibInfoToHMIPCMDeviceInfo(info));
+}
+
+void PCMService::OnDeviceLost(int device_id)
+{
+  hmi_reciever_->OnPCMDeviceLost(device_id);
 }
 
 void PCMService::OnConnectPhoneRequest(ConnectRequestPhoneInfo info)

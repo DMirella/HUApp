@@ -43,6 +43,11 @@ void HMIService::OnPCMDeviceDetected(HMIPCMDeviceInfo info)
   sender_.OnPCMDeviceDetected(info);
 }
 
+void HMIService::OnPCMDeviceLost(int device_id)
+{
+  sender_.OnPCMDeviceLost(device_id);
+}
+
 void QHMISignalSender::Init()
 {
   connect(&(hmi_service_->sender_),
@@ -69,6 +74,11 @@ void QHMISignalSender::Init()
           SIGNAL(PCMDeviceDetected(HMIPCMDeviceInfo)),
           &(hmi_service_->main_window_.phone_screen_),
           SLOT(OnPCMDeviceDetected(HMIPCMDeviceInfo)));
+
+  connect(&(hmi_service_->sender_),
+          SIGNAL(PCMDeviceLost(int)),
+          &(hmi_service_->main_window_.phone_screen_),
+          SLOT(OnPCMDeviceLost(int)));
 }
 
 }  // hmi

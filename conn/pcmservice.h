@@ -26,13 +26,12 @@ class PCMService : public PCMLibReciever
  private:
 
   // HMIPhoneReciever
-  virtual void OnPhoneScreenShown() override {
-    LibManager::GetInstance().GetPCMLib()->TempTest();
-  }
+  void OnPhoneScreenShown() override {}
+  void OnConnectPhoneRequest(ConnectRequestPhoneInfo info) override;
 
   // PCMLibReciever interface
   void OnDeviceDetected(const PCMDeviceInfo &info) override;
-  void OnConnectPhoneRequest(ConnectRequestPhoneInfo info) override;
+  void OnDeviceLost(int device_id) override;
 
   std::shared_ptr<PCMServiceReciever> hmi_reciever_;
 };

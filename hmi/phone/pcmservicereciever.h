@@ -21,6 +21,7 @@ class PCMServiceReciever : public QObject {
  public:
   PCMServiceReciever() {}
   virtual void OnPCMDeviceDetected(HMIPCMDeviceInfo info) = 0;
+  virtual void OnPCMDeviceLost(int device_id) = 0;
 };
 
 #endif // PCMSERVICERECIEVER_H
