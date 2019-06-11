@@ -93,17 +93,20 @@ void PhoneScreen::UpdateTechnologyList(QString device_name)
 
 void PhoneScreen::on_pushButton_clicked()
 {
-  ConnectRequestPhoneInfo info;
-  auto device_info = devices_id_map_info_[ui->comboBox->currentText()];
-  info.device_id = device_info.device_id;
-  if (ui->comboBox_2->currentText() == QString(kCarPlay.c_str())) {
-    info.technology = ConnectRequestPhoneInfo::Technology::CarPlay;
-  } else if (ui->comboBox_2->currentText() == QString(kAndroidAuto.c_str())) {
-    info.technology = ConnectRequestPhoneInfo::Technology::AndroidAuto;
-  } else if (ui->comboBox_2->currentText() == QString(kMirrorLink.c_str())) {
-    info.technology = ConnectRequestPhoneInfo::Technology::MirrorLink;
+  if (ui->comboBox->count() > 0) {
+    ConnectRequestPhoneInfo info;
+    auto device_info = devices_id_map_info_[ui->comboBox->currentText()];
+    info.device_id = device_info.device_id;
+    if (ui->comboBox_2->currentText() == QString(kCarPlay.c_str())) {
+      info.technology = ConnectRequestPhoneInfo::Technology::CarPlay;
+    } else if (ui->comboBox_2->currentText() == QString(kAndroidAuto.c_str())) {
+      info.technology = ConnectRequestPhoneInfo::Technology::AndroidAuto;
+    } else if (ui->comboBox_2->currentText() == QString(kMirrorLink.c_str())) {
+      info.technology = ConnectRequestPhoneInfo::Technology::MirrorLink;
+    }
+    pcm_reciever_->OnConnectPhoneRequest(info);
+    phone_screen_emulator_.show();
   }
-  pcm_reciever_->OnConnectPhoneRequest(info);
 }
 
 void PhoneScreen::on_pushButton_3_clicked()
@@ -136,7 +139,7 @@ void PhoneScreen::on_pushButton_2_clicked()
   if (index != -1) {
     QString current_text = ui->listWidget->currentItem()->text();
     LibManager::GetInstance().GetPCMLib()->EmulateLostDevice(
-          current_text.toLocal8Bit().constData());
+        current_text.toLocal8Bit().constData());
 
     QListWidgetItem *it = ui->listWidget->takeItem(index);
     delete it;
