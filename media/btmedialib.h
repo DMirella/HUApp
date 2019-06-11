@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+#include <QDebug>
+
 struct BTMediaDeviceInfo {
   int device_id;
   std::string btmac_adress;
@@ -46,7 +48,13 @@ class BTMediaLib {
     }
   }
 
-  void PlayBTMedia(int device_id) {}
+  void PlayBTMedia(int device_id) {
+    qDebug() << "BTMediaLib::PlayBTMedia";
+  }
+
+  void StopBTMedia(int device_id) {
+    qDebug() << "BTMediaLib::StopBTMedia";
+  }
  private:
   std::shared_ptr<BTMediaLibReciever> reciever_;
   std::vector<BTMediaDeviceInfo> media_devices_;

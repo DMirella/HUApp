@@ -26,14 +26,16 @@ void MediaScreen::Init()
 
 void MediaScreen::on_pushButton_clicked()
 {
-  if (media_button_state_ == MediaButtonState::play) {
-    QString current_text = ui->comboBox->itemData(ui->comboBox->currentIndex()).toString();
-    reciever_->onPlayButton(device_map_id_[current_text]);
-  } else {
-    QString current_text = ui->comboBox->itemData(ui->comboBox->currentIndex()).toString();
-    reciever_->onPauseButton(device_map_id_[current_text]);
+  if (ui->comboBox->count() > 0) {
+    if (media_button_state_ == MediaButtonState::play) {
+      QString current_text = ui->comboBox->itemData(ui->comboBox->currentIndex()).toString();
+      reciever_->onPlayButton(device_map_id_[current_text]);
+    } else {
+      QString current_text = ui->comboBox->itemData(ui->comboBox->currentIndex()).toString();
+      reciever_->onPauseButton(device_map_id_[current_text]);
+    }
+    UpdateMediaButtonState();
   }
-  UpdateMediaButtonState();
 }
 
 void MediaScreen::OnMediaDeviceDetected(HMIMediaDeviceInfo info)
@@ -50,13 +52,13 @@ void MediaScreen::OnMediaDeviceLost(int device_id)
 
 void MediaScreen::UpdateMediaButtonState()
 {
-    if (media_button_state_ == MediaButtonState::play) {
-        ui->pushButton->setText("Pause");
-        media_button_state_ = MediaButtonState::pause;
-    } else {
-        ui->pushButton->setText("Play");
-        media_button_state_ = MediaButtonState::play;
-    }
+  if (media_button_state_ == MediaButtonState::play) {
+    ui->pushButton->setText("Pause");
+    media_button_state_ = MediaButtonState::pause;
+  } else {
+    ui->pushButton->setText("Play");
+    media_button_state_ = MediaButtonState::play;
+  }
 }
 
 void MediaScreen::on_pushButton_2_clicked()

@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    audio/audio_service.cc \
     conn/pcmservice.cc \
     hmi/main_window.cc \
     hmi/hmi_service.cc \
@@ -41,6 +42,10 @@ SOURCES += \
     main/lib_manager.cc
 
 HEADERS += \
+    audio/audio_service.h \
+    audio/audio_service_reciever.h \
+    audio/audio_sources.h \
+    audio/audiolib.h \
     conn/pcmlib.h \
     conn/pcmservice.h \
     hmi/main_window.h \

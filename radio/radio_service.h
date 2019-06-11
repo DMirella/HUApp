@@ -4,6 +4,7 @@
 #include "radiolib.h"
 #include "hmi_radio_reciever.h"
 #include "main/lib_manager.h"
+#include "audio/audio_service_reciever.h"
 
 #include <QMessageBox>
 
@@ -12,7 +13,8 @@ class RadioServiceReciever;
 namespace radio {
 
 class RadioService : public RadioLibReciever
-                   , public HMIRadioReciever {
+                   , public HMIRadioReciever
+                   , public audio::AudioServiceReciever {
  public:
   RadioService(const RadioService& service) = delete;
   RadioService(RadioService&& service) = delete;

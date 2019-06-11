@@ -6,12 +6,14 @@
 #include "pcmlib.h"
 #include "hmi/phone/hmiphonereciever.h"
 #include "main/lib_manager.h"
+#include "audio/audio_service_reciever.h"
 
 class PCMServiceReciever;
 namespace pcm {
 
 class PCMService : public PCMLibReciever
-                 , public HMIPhoneReciever {
+                 , public HMIPhoneReciever
+                 , public audio::AudioServiceReciever {
  public:
   PCMService(const PCMService& service) = delete;
   PCMService(PCMService&& service) = delete;

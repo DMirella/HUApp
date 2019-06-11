@@ -4,7 +4,8 @@ ServiceAccessor::ServiceAccessor()
   : hmi_service_(std::make_shared<hmi::HMIService>())
   , media_service_(std::make_shared<media::MediaService>())
   , radio_service_(std::make_shared<radio::RadioService>())
-  , pcm_service_(std::make_shared<pcm::PCMService>()) {
+  , pcm_service_(std::make_shared<pcm::PCMService>())
+  , audio_service_(std::make_shared<audio::AudioService>()) {
 
 }
 
@@ -18,8 +19,10 @@ void ServiceAccessor::Init()
   assert(radio_service_ != nullptr);
   assert(media_service_ != nullptr);
   assert(pcm_service_ != nullptr);
+  assert(audio_service_ != nullptr);
 
   radio_service_->Init();
   media_service_->Init();
   pcm_service_->Init();
+  audio_service_->Init();
 }

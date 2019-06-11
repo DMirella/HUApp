@@ -3,6 +3,7 @@
 #include "btmedialib.h"
 #include "hmi/media/media_service_reciever.h"
 #include "main/service_accessor.h"
+#include "audio/audio_sources.h"
 
 namespace  {
 
@@ -35,6 +36,20 @@ void MediaService::OnDeviceDetected(const BTMediaDeviceInfo &info)
 void MediaService::OnDeviceLost(int device_id)
 {
   reciever_->OnMediaDeviceLost(device_id);
+}
+
+void MediaService::onPlayButton(int device_id)
+{
+  ServiceAccessor::GetInstance().GetAudioService()->RequestPlayMainAudioSource(
+        audio::MainAudioSource::SRC_MEDIA);
+  LibManager::GetInstance().GetBTMediaLib()->PlayBTMedia(device_id);
+}
+
+void MediaService::onPauseButton(int device_id)
+{
+  ServiceAccessor::GetInstance().GetAudioService()->RequestStopMainAudioSource(
+        audio::MainAudioSource::SRC_MEDIA);
+  LibManager::GetInstance().GetBTMediaLib()->StopBTMedia(device_id);
 }
 
 }  // media
