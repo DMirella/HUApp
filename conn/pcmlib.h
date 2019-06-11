@@ -5,6 +5,8 @@
 #include <memory>
 #include <vector>
 
+#include <QDebug>
+
 struct PCMDeviceInfo {
   enum Techology {
     CarPlay = 0,
@@ -21,6 +23,12 @@ class PCMLibReciever {
  public:
   virtual void OnDeviceDetected(const PCMDeviceInfo& info) = 0;
   virtual void OnDeviceLost(int device_id) = 0;
+  virtual void OnPhoneMediaStart() = 0;
+  virtual void OnPhoneMediaStop() = 0;
+  virtual void OnPhonePhonecallStart() = 0;
+  virtual void OnPhonePhonecallStop() = 0;
+  virtual void OnPhoneNavigationStart() = 0;
+  virtual void OnPhoneNavigationStop() = 0;
 };
 
 class PCMLib {
@@ -47,6 +55,30 @@ class PCMLib {
         break;
       }
     }
+  }
+
+  void EmulateRequestPhoneMediaStart() {
+    reciever_->OnPhoneMediaStart();
+  }
+
+  void EmulateRequestPhoneMediaStop() {
+    reciever_->OnPhoneMediaStop();
+  }
+
+  void EmulateRequestPhonecallStart() {
+    reciever_->OnPhonePhonecallStart();
+  }
+
+  void EmulateRequestPhonecallStop() {
+    reciever_->OnPhonePhonecallStop();
+  }
+
+  void EmulateRequestPhoneNavigationStart() {
+    reciever_->OnPhoneNavigationStart();
+  }
+
+  void EmulateRequestPhoneNavigationStop() {
+    reciever_->OnPhoneNavigationStop();
   }
 
  private:
