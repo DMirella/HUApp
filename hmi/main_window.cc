@@ -5,6 +5,10 @@ namespace hmi {
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
+  radio_screen_(this),
+  media_screen_(this),
+  phone_screen_(this),
+  settings_screen_(this),
   ui(new Ui::MainWindow) {
   ui->setupUi(this);
 }
