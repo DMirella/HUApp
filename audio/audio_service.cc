@@ -56,7 +56,8 @@ void AudioService::RequestPlayMainAudioSource(MainAudioSource source)
 {
   qDebug() << "AudioService::RequestPlayMainAudioSource "
            << ConvertMainSourceToQString(source);
-  if (main_audio_source_ != MainAudioSource::SRC_EMPTY) {
+  if (main_audio_source_ != MainAudioSource::SRC_EMPTY &&
+      main_audio_source_ != source) {
     for (auto it : recievers_list_) {
       it->StopMainAudioSource(main_audio_source_);
     }
@@ -78,7 +79,8 @@ void AudioService::RequestPlayAltAudioSource(AltAudioSource source)
 {
   qDebug() << "AudioService::RequestPlayAltAudioSource "
            << ConvertAltSourceToQString(source);
-  if (alt_audio_source_ != AltAudioSource::SRC_EMPTY) {
+  if (alt_audio_source_ != AltAudioSource::SRC_EMPTY &&
+      alt_audio_source_ != source) {
     for (auto it : recievers_list_) {
       it->StopAltAudioSource(alt_audio_source_);
     }

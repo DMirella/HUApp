@@ -7,6 +7,7 @@
 
 #include "main/service_accessor.h"
 
+namespace {
 
 HMIPCMDeviceInfo ConvertPCMLibInfoToHMIPCMDeviceInfo(const PCMDeviceInfo& info) {
   HMIPCMDeviceInfo result;
@@ -17,6 +18,32 @@ HMIPCMDeviceInfo ConvertPCMLibInfoToHMIPCMDeviceInfo(const PCMDeviceInfo& info) 
   }
   return result;
 }
+
+QString ConvertMainSourceToQString(audio::MainAudioSource source) {
+  switch (source) {
+   case audio::MainAudioSource::SRC_EMPTY:
+    return "SRC_EMPTY";
+   case audio::MainAudioSource::SRC_MEDIA:
+    return "SRC_MEDIA";
+   case audio::MainAudioSource::SRC_RADIO:
+    return "SRC_RADIO";
+   case audio::MainAudioSource::SRC_PHONE_MEDIA:
+    return "SRC_PHONE_MEDIA";
+   case audio::MainAudioSource::SRC_PHONE_PHONECALL:
+    return "SRC_PHONE_PHONECALL";
+  }
+}
+
+QString ConvertAltSourceToQString(audio::AltAudioSource source) {
+  switch (source) {
+   case audio::AltAudioSource::SRC_EMPTY:
+    return "SRC_EMPTY";
+   case audio::AltAudioSource::SRC_PHONE_NAVI:
+    return "SRC_PHONE_NAVI";
+  }
+}
+
+}  // namespace
 
 namespace pcm {
 
@@ -79,8 +106,8 @@ void PCMService::OnPhoneNavigationStop()
 void PCMService::StopMainAudioSource(audio::MainAudioSource source)
 {
   if (source == audio::MainAudioSource::SRC_PHONE_MEDIA) {
-    qDebug() << "PCMService::StopMainAudioSource requested stop phone media"
-             << " from AudioService recieved";
+    qDebug() << "PCMService::StopMainAudioSource recieved from AudioSerice for source "
+             << ConvertMainSourceToQString(source);
     LibManager::GetInstance().GetPCMLib()->StopPhoneMedia();
   }
 }
@@ -88,8 +115,8 @@ void PCMService::StopMainAudioSource(audio::MainAudioSource source)
 void PCMService::StopAltAudioSource(audio::AltAudioSource source)
 {
   if (source == audio::AltAudioSource::SRC_PHONE_NAVI) {
-    qDebug() << "PCMService::StopMainAudioSource requested stop phone navigation"
-             << "from AudioService recieved";
+    qDebug() << "PCMService::StopAltAudioSource recieved from AudioSerice for source "
+             << ConvertAltSourceToQString(source);
     LibManager::GetInstance().GetPCMLib()->StopPhoneNavigation();
   }
 }

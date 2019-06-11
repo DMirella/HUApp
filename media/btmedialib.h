@@ -49,11 +49,15 @@ class BTMediaLib {
   }
 
   void PlayBTMedia(int device_id) {
-    qDebug() << "BTMediaLib::PlayBTMedia";
+    qDebug() << "BTMediaLib::PlayBTMedia successful start!";
   }
 
   void StopBTMedia(int device_id) {
-    qDebug() << "BTMediaLib::StopBTMedia";
+    qDebug() << "BTMediaLib::StopBTMedia successful stop!";
+  }
+
+  void StopCurrentBTMedia() {
+    qDebug() << "BTMediaLib::StopCurrentBTMedia successful stop!";
   }
  private:
   std::shared_ptr<BTMediaLibReciever> reciever_;

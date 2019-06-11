@@ -32,12 +32,10 @@ class MediaService : public BTMediaLibReciever
   // HMIMediaReciever
   void onPlayButton(int device_id) override;
   void onPauseButton(int device_id) override;
-  void onBTMediaScreenShow() override {
-    qDebug() << "MediaService::onBTMediaScreenShow\n";
-  }
+  void onBTMediaScreenShow() override { }
 
   // AudioServiceReciever interface
-  void StopMainAudioSource(audio::MainAudioSource source) override {}
+  void StopMainAudioSource(audio::MainAudioSource source) override;
 
   std::shared_ptr<MediaServiceReciever> reciever_;
 };

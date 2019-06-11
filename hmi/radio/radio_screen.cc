@@ -48,6 +48,10 @@ void RadioScreen::OnStationLost(int station_id)
 void RadioScreen::showEvent(QShowEvent* event)
 {
   hmi_radio_reciever_->onRadioScreenShow();
+  if (ui->comboBox->count() > 0) {
+    hmi_radio_reciever_->onStationChanged(
+        radio_id_by_name_map_[ui->comboBox->currentText()]);
+  }
 }
 
 void RadioScreen::on_pushButton_clicked()

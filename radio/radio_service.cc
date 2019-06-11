@@ -64,7 +64,6 @@ void RadioService::OnStationLost(int station_id)
 
 void RadioService::onStationChanged(int station_id)
 {
-  LibManager::GetInstance().GetRadioLib()->StopCurrentRadioStation();
   ServiceAccessor::GetInstance().GetAudioService()->RequestPlayMainAudioSource(
         audio::MainAudioSource::SRC_RADIO);
   LibManager::GetInstance().GetRadioLib()->PlayRadioStation(station_id);
